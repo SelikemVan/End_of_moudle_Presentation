@@ -1,4 +1,31 @@
+def switch_category(number):
+    """
+    Switch the category based on the number entered.
+
+    Args:
+        number: The number representing the category.
+
+    Returns:
+        The name of the category.
+    """
+
+    categories = {
+        1: "Electronics",
+        2: "Clothing",
+        3: "Home Decor",
+        4: "Furniture",
+    }
+
+    return categories.get(number, "Invalid number entered.")
+
+
 print("Welcome to Seli's virtual shopping mall!")
+user_input = input("Enter a number (1, 2, 3, or 4): ")
+try:
+    category = switch_category(int(user_input))
+    print("The category is", category)
+except ValueError:
+    print("Invalid number entered.")
 
 
 def create_product(name, price, description):
@@ -86,7 +113,7 @@ furniture = [
     {"name": "Dresser", "price": 279.99, "description": "Dresser with ample storage for your belongings."},
     {"name": "Nightstand", "price": 89.99, "description": "Convenient nightstand for your bedside essentials."},
     {"name": "Recliner Chair", "price": 299.99, "description": "Plush recliner chair for ultimate relaxation."},
-    {"name": "Sectional Sofa", "price":  899.99, "description": "Modular sectional sofa for versatile seating."},
+    {"name": "Sectional Sofa", "price": 899.99, "description": "Modular sectional sofa for versatile seating."},
     {"name": "Bar Stool", "price": 49.99, "description": "Sleek bar stool for your kitchen counter."},
     {"name": "Chest of Drawers", "price": 199.99, "description": "Chest of drawers for additional storage space."},
     {"name": "Console Table", "price": 159.99, "description": "Elegant console table for your hallway."},
@@ -110,3 +137,25 @@ for product in home_decor:
 print("furniture")
 for product in furniture:
     display_product(product)
+
+
+def switch_category(number):
+    if number == 1:
+        return "Category 1"
+    elif number == 2:
+        return "Category 2"
+    elif number == 3:
+        return "Category 3"
+    elif number == 4:
+        return "Category 4"
+    else:
+        raise ValueError("Invalid number entered.")
+
+
+def main():
+    user_input = input("Enter a number (1, 2, 3, or 4): ")
+    try:
+        category = switch_category(int(user_input))
+        print("The category is", category)
+    except ValueError:
+        print("Invalid number entered.")
