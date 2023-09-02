@@ -9,7 +9,7 @@ def send_confirmation_sms():
     pass
 
 
-def registration(name, postal_address, email_address, phone_number, password):
+def registration(name, postal_address, email_address, phone_number, password, users):
     """
   This function registers a new user on the Global Movement app.
 
@@ -22,6 +22,12 @@ def registration(name, postal_address, email_address, phone_number, password):
 
   Returns:
     A boolean value indicating whether the registration was successful.
+    :param name:
+    :param postal_address:
+    :param email_address:
+    :param phone_number:
+    :param password:
+    :param users:
     """
 
     if not name or not postal_address or not email_address or not phone_number:
@@ -46,7 +52,7 @@ def registration(name, postal_address, email_address, phone_number, password):
     return True
 
 
-def login(email_address, password):
+def login(email_address, password, users):
     """
   This function logs in a user to the Global Movement app.
 
@@ -56,6 +62,9 @@ def login(email_address, password):
 
   Returns:
     A boolean value indicating whether the login was successful.
+    :param email_address:
+    :param password:
+    :param users:
   """
 
     # Check if the user exists in the list of users.
