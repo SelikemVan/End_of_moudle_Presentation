@@ -1,4 +1,4 @@
-print("Welcome to Vankem's Global Movement App!")
+print("Welcome to Vankem's Global Movement App")
 
 
 def send_confirmation_email():
@@ -22,17 +22,22 @@ def registration(name, postal_address, email_address, phone_number, password, us
 
   Returns:
     A boolean value indicating whether the registration was successful.
+    :param users:
     :param name:
     :param postal_address:
     :param email_address:
     :param phone_number:
     :param password:
-    :param users:
     """
 
     if not name or not postal_address or not email_address or not phone_number:
         return False
-
+    # Get the user input.
+    name = input("Enter your name: ")
+    postal_address = input("Enter your postal address: ")
+    email_address = input("Enter your email address: ")
+    phone_number = input("Enter your phone number: ")
+    password = input("Enter your password: ")
     # Create a dictionary to store the user data.
     user_data = {
         'name': name,
