@@ -1,25 +1,67 @@
-# This Python program generates a random password of a specified length using the random module.
-# The generate_password()
-# function creates a string of all possible characters and selects randomly from it to create the password.
-# The program prompts the user for the desired length and displays the generated password.
-# It utilizes the 'random' module to introduce randomness into the process
-import random
+print("Welcome to Vankem's Global Movement App")
 
 
-def generate_password(length):
-    # "characters" contains all possible characters for the password,
-    # including lowercase and uppercase letters, digits, and special characters.
-    characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()'
-    # "password" stores the characters in the generation of the password
-    password = ''
-    # In each iteration, the loop randomly selects a character from the character's
-    # string using the random.choice() function.
-    for _ in range(length):
-        password += random.choice(characters)
-    return password
+def registration(users):
+    print("Welcome to the Registration page")
+
+    name = input("Enter your name: ")
+    postal_address = input("Enter your postal address: ")
+    email_address = input("Enter your email address: ")
+    phone_number = input("Enter your phone number: ")
+    password = input("Enter your password: ")
+
+    if not name or not postal_address or not email_address or not phone_number or not password:
+        print("Registration failed. Please fill in all fields.")
+        return False
+
+    # Create a dictionary to store the user data.
+    user_data = {
+        'name': name,
+        'postal_address': postal_address,
+        'email_address': email_address,
+        'phone_number': phone_number,
+        'password': password
+    }
+
+    # Add the user data to the list of users.
+    users.append(user_data)
+
+    # Send a confirmation email and SMS message to the user.
+    print("Registration successful! A confirmation email has been sent to {}.".format(email_address))
+
+    return user_data
 
 
-# Prompts the user for the desired password length and generates a password.
-length = int(input('Enter the desired password length: '))
-password = generate_password(length)
-print('Your password is:', password)
+def login(users):
+    print("Welcome to the login page")
+
+    email = input("Enter your email: ")
+    password = input("Enter your password: ")
+
+    for user_data in users:
+        if email == user_data.get("email_address") and password == user_data.get("password"):
+            print("Login successful!")
+            return
+    print("Invalid email or password.")
+
+
+# Main program
+users = []
+
+print("Welcome to the main Application")
+
+while True:
+    choice = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n")
+
+    if choice == "1":
+        registration(users)
+
+    elif choice == "2":
+        login(users)
+
+    elif choice == "3":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid choice!")

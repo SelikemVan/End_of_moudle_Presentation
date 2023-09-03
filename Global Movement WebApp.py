@@ -1,37 +1,19 @@
 print("Welcome to Vankem's Global Movement App")
 
 
-def registration(name, postal_address, email_address, phone_number, password, users):
+def registration(users):
     print("Welcome to the Registration page")
-    """
-  This function registers a new user on the Global Movement app.
 
-  Args:
-    name: The user's name.
-    postal_address: The user's postal address.
-    email_address: The user's email address.
-    phone_number: The user's phone number.
-    password: The user's password.
-
-  Returns:
-    A boolean value indicating whether the registration was successful.
-    :param users:
-    :param name:
-    :param postal_address:
-    :param email_address:
-    :param phone_number:
-    :param password:
-    """
-
-    if not name or not postal_address or not email_address or not phone_number or not password:
-        return False
-
-    # Get the user input.
     name = input("Enter your name: ")
     postal_address = input("Enter your postal address: ")
     email_address = input("Enter your email address: ")
     phone_number = input("Enter your phone number: ")
     password = input("Enter your password: ")
+
+    if not name or not postal_address or not email_address or not phone_number or not password:
+        print("Registration failed. Please fill in all fields.")
+        return False
+
     # Create a dictionary to store the user data.
     user_data = {
         'name': name,
@@ -50,56 +32,21 @@ def registration(name, postal_address, email_address, phone_number, password, us
     return user_data
 
 
-def login(email_address, password, users):
+def login(users):
     print("Welcome to the login page")
-    """
-  This function logs in a user to the Global Movement app.
-
-  Args:
-    email_address: The user's email address.
-    password: The user's password.
-
-  Returns:
-    A boolean value indicating whether the login was successful.
-    :param email_address:
-    :param password:
-    :param users:
-  """
-
-    def check_password_and_email(email, password):
-        # Implementation of password verification logic
-        # Replace this with your own password verification mechanism
-        # For demonstration purposes, this function simply checks if the password is "password123"
-        if password == "password123":
-            return True
-        if email == "selikemvan@gmail.com":
-            return True
-
-        else:
-            return False
 
     email = input("Enter your email: ")
     password = input("Enter your password: ")
 
     for user_data in users:
-        if email == user_data.get("email"):
-            stored_password = user_data.get("password")
-            if check_password_and_email(password, stored_password):
-                print("Login successful!")
-            else:
-                print("Invalid password.")
+        if email == user_data.get("email_address") and password == user_data.get("password"):
+            print("Login successful!")
             return
-    print("Invalid email.")
-    # Check if the user exists in the list of users.
-    for user in users:
-        if user['email_address'] == email_address and user['password'] == hash(password):
-            return user['session_id']
-
-    return False
+    print("Invalid email or password.")
 
 
 # Main program
-user_data = {}
+users = []
 
 print("Welcome to the main Application")
 
@@ -107,14 +54,16 @@ while True:
     choice = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n")
 
     if choice == "1":
-        user_data = registration(name, postal_address, email_address, phone_number, password, users)
+        registration(users)
 
-    if choice == "2":
-        login(email_address, password, users)
+    elif choice == "2":
+        login(users)
 
-    if choice == "3":
+    elif choice == "3":
         print("Goodbye!")
         break
 
     else:
         print("Invalid choice!")
+
+        
