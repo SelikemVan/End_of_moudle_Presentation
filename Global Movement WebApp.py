@@ -92,7 +92,8 @@ def transport_services():
             print("The fare for the airplane is {}.".format(fare))
 
         if trs == "3":
-            print("Enter your desired Train location from:\nAccra\nKumasi\nTakoradi\nTamale\nHo\nCape-Coast\n: ")
+            print("Enter your desired Train location from:Kumasi\nAccra\nSanyani\nTechiman\nCape-Coast\nGoaso"
+                  "\nKoforidua\nTamale\nDamango\nNalerigu\nBolgatanga: ")
             origin = input()
             print("Enter your desired Train location to: ")
             destination = input()
