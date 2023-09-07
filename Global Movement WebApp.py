@@ -77,6 +77,43 @@ def transport_services():
         fare = basic_fare - discount
         print("The fare for the luxurious bus is {}.".format(fare))
 
+        print("Do you want to add in-app entertainment? (yes/no)")
+        in_app_entertainment_choice = input()
+
+        if in_app_entertainment_choice == "yes":
+            print("The in-app entertainment options include movies, TV shows, music, and games.")
+            print("Do you want to play a game? (yes/no)")
+            game_choice = input()
+
+            if game_choice == "yes":
+                print("The available games are:")
+                print("4. Rock Paper Scissors")
+                game_choice = input("Enter the number of the game you want to play: ")
+
+                if game_choice == "4":
+                    print("Let's play Rock Paper Scissors!")
+
+                    while True:
+                        user_choice = input("What is your choice? (rock/paper/scissors): ")
+                        computer_choice = "rock" or "paper" or "scissors"
+
+                        if user_choice == computer_choice:
+                            print("It's a tie!")
+                        elif user_choice == "rock" and computer_choice == "scissors":
+                            print("You win!")
+                        elif user_choice == "paper" and computer_choice == "rock":
+                            print("You win!")
+                        elif user_choice == "scissors" and computer_choice == "paper":
+                            print("You win!")
+                        else:
+                            print("You lose!")
+                        play_again = input("Do you want to play again? (yes/no): ")
+                        if play_again == "no":
+                            break
+
+                        if play_again == "yes":
+                            break
+
         if trs == "2":
             print("Enter your desired airplane location from:\nAccra\nKumasi\nTakoradi\nTamale\nHo\nCape-Coast\n: ")
             origin = input()
@@ -90,6 +127,16 @@ def transport_services():
             discount = 0.5 * basic_fare if adults > 3 else 0
             fare = basic_fare - discount
             print("The fare for the airplane is {}.".format(fare))
+            print("Do you want to add in-app entertainment? (yes/no)")
+            in_app_entertainment_choice = input()
+
+            if in_app_entertainment_choice =="yes":
+                spots = {1: "1", 2: "2", 3: "3", 4: "4", 5: "5",
+                         6: "6", 7: "7", 8: "8", 9: "9"}
+                draw_board(spots)
+
+
+
 
         if trs == "3":
             print("Enter your desired Train location from:Kumasi\nAccra\nSanyani\nTechiman\nCape-Coast\nGoaso"
@@ -117,6 +164,15 @@ def transport_services():
 
             if hotel_choice == "no":
                 return
+def draw_board(spots):
+    board = (f"|")
+    print(board)
+
+def entertainment():
+
+
+
+
 
                 # Main program
 
@@ -126,7 +182,7 @@ users = []
 print("Welcome to the main Application")
 
 while True:
-    choice = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n4. Payment\n")
+    choice = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n4. Payment\n5. Entertainment\n")
 
     if choice == "1":
         registration(users)
@@ -141,6 +197,11 @@ while True:
     if choice == "4":
         payment_method1 = payment_options()
         transport_services()
+
+    if choice == "5":
+
+
+
 
     else:
         print("Invalid choice!")
