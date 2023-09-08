@@ -130,13 +130,8 @@ def transport_services():
             print("Do you want to add in-app entertainment? (yes/no)")
             in_app_entertainment_choice = input()
 
-            if in_app_entertainment_choice =="yes":
-                spots = {1: "1", 2: "2", 3: "3", 4: "4", 5: "5",
-                         6: "6", 7: "7", 8: "8", 9: "9"}
-                draw_board(spots)
-
-
-
+            if in_app_entertainment_choice == "yes":
+                tic_tac_toe_game()
 
         if trs == "3":
             print("Enter your desired Train location from:Kumasi\nAccra\nSanyani\nTechiman\nCape-Coast\nGoaso"
@@ -164,18 +159,71 @@ def transport_services():
 
             if hotel_choice == "no":
                 return
-def draw_board(spots):
-    board = (f"|")
-    print(board)
+
+
+def tic_tac_toe_game():
+    # Define the Tic Tac Toe game logic here
+    board = [" " for _ in range(9)]
+    current_player = "X"
+    game_over = False
+
+    def print_board():
+        for i in range(0, 9, 3):
+            print(" | ".join(board[i:i + 3]))
+            if i < 6:
+                print("-" * 9)
+
+    def check_winner(player):
+        # Check rows, columns, and diagonals for a win
+        return (
+                (board[0] == board[1] == board[2] == player) or
+                (board[3] == board[4] == board[5] == player) or
+                (board[6] == board[7] == board[8] == player) or
+                (board[0] == board[3] == board[6] == player) or
+                (board[1] == board[4] == board[7] == player) or
+                (board[2] == board[5] == board[8] == player) or
+                (board[0] == board[4] == board[8] == player) or
+                (board[2] == board[4] == board[6] == player)
+        )
+
+    while not game_over:
+        print("\nTic Tac Toe Game\n")
+        print_board()
+        position = input(f"Player {current_player}, choose a position (1-9): ")
+
+        if position.isdigit() and 1 <= int(position) <= 9 and board[int(position) - 1] == " ":
+            board[int(position) - 1] = current_player
+
+            if check_winner(current_player):
+                print_board()
+                print(f"Player {current_player} wins!")
+                game_over = True
+            elif " " not in board:
+                print_board()
+                print("It's a tie!")
+                game_over = True
+            else:
+                current_player = "O" if current_player == "X" else "X"
+        else:
+            print("Invalid input. Please choose a valid empty position.")
+
 
 def entertainment():
+    while True:
+        print("\nEntertainment Options\n")
+        print("1. Play Tic Tac Toe")
+        print("2. Back to Main Menu")
+        option = input("Choose an option: ")
+
+        if option == "1":
+            tic_tac_toe_game()
+        elif option == "2":
+            break
+        else:
+            print("Invalid choice!")
 
 
-
-
-
-                # Main program
-
+# Main program
 
 users = []
 
@@ -199,8 +247,7 @@ while True:
         transport_services()
 
     if choice == "5":
-
-
+        entertainment()
 
 
     else:
