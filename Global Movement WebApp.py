@@ -1,4 +1,10 @@
-print("Welcome to Vankem's Global Movement App")
+print("USER STORY:\nTo solve a Global Transport problem for efficient transportation,\n "
+      "Selikem Van aims to establish a comprehensive transport company named Global Movement. He envisions a "
+      "diverse array of services under this company,\n including luxurious bus services, airplane services, "
+      "train services, taxi/metro services, and hotel services,\n all designed to provide exceptional experiences to "
+      "travelers.\n")
+print("\nWelcome to Vankem's Global Movement App\nTRANSPORTATION MADE EASIER!\n")
+print("Register and login to use the app")
 
 
 def registration(users):
@@ -27,7 +33,7 @@ def registration(users):
     users.append(user_data)
 
     # Send a confirmation email and SMS message to the user.
-    print("Registration successful! A confirmation email has been sent to {}.".format(email_address))
+    print("Registration successful! A confirmation email has been sent to {}".format(email_address))
 
     return user_data
 
@@ -87,10 +93,10 @@ def transport_services():
 
             if game_choice == "yes":
                 print("The available games are:")
-                print("4. Rock Paper Scissors")
+                print("1. Rock Paper Scissors")
                 game_choice = input("Enter the number of the game you want to play: ")
 
-                if game_choice == "4":
+                if game_choice == "1":
                     print("Let's play Rock Paper Scissors!")
 
                     while True:
@@ -109,10 +115,10 @@ def transport_services():
                             print("You lose!")
                         play_again = input("Do you want to play again? (yes/no): ")
                         if play_again == "no":
-                            break
+                            return
 
                         if play_again == "yes":
-                            break
+                            return
 
         if trs == "2":
             print("Enter your desired airplane location from:\nAccra\nKumasi\nTakoradi\nTamale\nHo\nCape-Coast\n: ")
@@ -135,7 +141,7 @@ def transport_services():
 
         if trs == "3":
             print("Enter your desired Train location from:Kumasi\nAccra\nSanyani\nTechiman\nCape-Coast\nGoaso"
-                  "\nKoforidua\nTamale\nDamango\nNalerigu\nBolgatanga: ")
+                  "\nFluoridate\nTamale\nMango\nNalerigu\nBolgatanga: ")
             origin = input()
             print("Enter your desired Train location to: ")
             destination = input()
@@ -168,6 +174,8 @@ def tic_tac_toe_game():
     game_over = False
 
     def print_board():
+        # 'range(0, 9, 3) '
+        # generates a sequence of numbers starting from 0, incrementing by 3, and stopping just before reaching 9.
         for i in range(0, 9, 3):
             print(" | ".join(board[i:i + 3]))
             if i < 6:
@@ -206,6 +214,7 @@ def tic_tac_toe_game():
                 current_player = "O" if current_player == "X" else "X"
         else:
             print("Invalid input. Please choose a valid empty position.")
+            return
 
 
 def entertainment():
@@ -248,7 +257,6 @@ while True:
 
     if choice == "5":
         entertainment()
-
 
     else:
         print("Invalid choice!")
