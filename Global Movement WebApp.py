@@ -48,7 +48,8 @@ def login(users):
         if email == user_data.get("email_address") and password == user_data.get("password"):
             print("Login successful!")
             return
-    print("Invalid email or password.")
+        else:
+            print("Invalid email or password.")
 
 
 def payment_options():
@@ -58,6 +59,17 @@ def payment_options():
     print("3. PayPal")
     payment_method = input("Enter your choice: ")
     print("You have selected {} as your payment method.".format(payment_method))
+    currency = input("Select your currency:")
+    print("cedis")
+    print("dollars")
+    print("euros")
+    print("pound")
+    print("Yen")
+    print("AUD")
+    print("CAD")
+
+    if currency == "cedis":
+        print("You have selected {} as your currency.".format(currency))
     return payment_method
 
 
@@ -94,11 +106,11 @@ def transport_services():
             if game_choice == "yes":
                 print("The available games are:")
                 print("1. Rock Paper Scissors")
+                print("2. tic tac toe")
                 game_choice = input("Enter the number of the game you want to play: ")
 
                 if game_choice == "1":
                     print("Let's play Rock Paper Scissors!")
-
                     while True:
                         user_choice = input("What is your choice? (rock/paper/scissors): ")
                         computer_choice = "rock" or "paper" or "scissors"
@@ -119,6 +131,8 @@ def transport_services():
 
                         if play_again == "yes":
                             return
+                if game_choice == "2":
+                    tic_tac_toe_game()
 
         if trs == "2":
             print("Enter your desired airplane location from:\nAccra\nKumasi\nTakoradi\nTamale\nHo\nCape-Coast\n: ")
@@ -221,15 +235,65 @@ def entertainment():
     while True:
         print("\nEntertainment Options\n")
         print("1. Play Tic Tac Toe")
-        print("2. Back to Main Menu")
+        print("2. Rock, Paper, Scissors")
+        print("3. Back to Main Menu")
+        print("4. Music")
+        print("5. movies")
+
         option = input("Choose an option: ")
 
         if option == "1":
             tic_tac_toe_game()
-        elif option == "2":
+        if option == "2":
+            while True:
+                print("Let's play Rock Paper Scissors!")
+                user_choice = input("What is your choice? (rock/paper/scissors): ")
+                computer_choice = "rock" or "paper" or "scissors"
+
+                if user_choice == computer_choice:
+                    print("It's a tie!")
+                elif user_choice == "rock" and computer_choice == "scissors":
+                    print("You win!")
+                elif user_choice == "paper" and computer_choice == "rock":
+                    print("You win!")
+                elif user_choice == "scissors" and computer_choice == "paper":
+                    print("You win!")
+                else:
+                    print("You lose!")
+                play_again = input("Do you want to play again? (yes/no): ")
+                if play_again == "no":
+                    return
+
+                if play_again == "yes":
+                    return
+
+        if option == "3":
             break
-        else:
-            print("Invalid choice!")
+
+        if option == "4":
+            print("\n Loading music...")
+
+            music = input(
+                "\n Music list_ \n1. As it was:By Harry Styles\n2.Pretty little lair:By JVKE\n3. Sunflower:By "
+                "Post Malone\n4.Cradles:By Suburban\n5. Enemy:By Imagine dragons\n")
+
+            if music == "1":
+                print("Playing 'As it was' by Harry Styles...")
+
+            if music == "2":
+                print("Playing 'Pretty Little liar' by JVKE...")
+
+            if music == "3":
+                print("Playing 'Sunflower' by Post Malone...")
+
+            if music == "4":
+                print("Playing 'Cradles' by Suburban...")
+
+            if music == "5":
+                print("Playing 'Enemy' by Imagine Dragons...")
+
+        if option == "5":
+            print("Playing Movies...")
 
 
 # Main program
@@ -257,6 +321,3 @@ while True:
 
     if choice == "5":
         entertainment()
-
-    else:
-        print("Invalid choice!")
