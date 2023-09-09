@@ -59,15 +59,7 @@ def payment_options():
     print("3. PayPal")
     payment_method = input("Enter your choice: ")
     print("You have selected {} as your payment method.".format(payment_method))
-    currency = input("Select your currency:")
-    print("cedis")
-    print("dollars")
-    print("euros")
-    print("pound")
-    print("Yen")
-    print("AUD")
-    print("CAD")
-
+    currency = input("Select your currency:\ncedis\ndollars\neuros\npound\nYen\nAUD\nCAD\n")
     if currency == "cedis":
         print("You have selected {} as your currency.".format(currency))
     return payment_method
@@ -93,7 +85,7 @@ def transport_services():
         basic_fare = 1000 * adults + 500 * children
         discount = 0.2 * basic_fare if adults > 3 else 0
         fare = basic_fare - discount
-        print("The fare for the luxurious bus is {}.".format(fare))
+        print("The fare for the luxurious bus is {} .".format(fare))
 
         print("Do you want to add in-app entertainment? (yes/no)")
         in_app_entertainment_choice = input()
