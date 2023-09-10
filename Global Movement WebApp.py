@@ -36,7 +36,11 @@ def admin_login():
         print("Admin login failed. You need to register or login as a regular user.")
         choice2 = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n")
         if choice2 == "1":
-            registration(users)
+            user_data = registration(users)
+            if user_data:
+                # If registration is successful, allow the user to log in
+                login(users)
+                return
         elif choice2 == "2":
             login(users)
         elif choice2 == "3":
