@@ -6,6 +6,41 @@ print("USER STORY:\nTo solve a Global Transport problem for efficient transporta
 print("\nWelcome to Vankem's Global Movement App\nTRANSPORTATION MADE EASIER!\n")
 print("Register and login to use the app")
 
+# Define the admin username and password
+admin_username = "admin"
+admin_password = "admin123"
+
+
+# Function to check if the user is the admin
+def admin_login():
+    print("Admin Login")
+    username = input("Enter admin username: ")
+    password = input("Enter admin password: ")
+
+    if username == admin_username and password == admin_password:
+        print("Admin login successful!")
+        while True:
+            choice2 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Exit\n")
+
+            if choice2 == "1":
+                payment_method1 = payment_options()
+                transport_services()
+
+            elif choice2 == "2":
+                entertainment()
+
+            elif choice2 == "3":
+                print("Goodbye, admin!")
+                break
+    else:
+        print("Admin login failed. You need to register or login as a regular user.")
+        return False
+
+
+# Main program
+if admin_login():
+    print("You are logged in as the admin.")
+
 
 def registration(users):
     print("Welcome to the Registration page")
@@ -60,7 +95,7 @@ def payment_options():
     payment_method = input("Enter your choice: ")
     print("You have selected {} as your payment method.".format(payment_method))
     currency = input("Select your currency:\ncedis\ndollars\neuros\npound\nYen\nAUD\nCAD\n")
-    if currency == "cedis":
+    if currency == "cedes":
         print("You have selected {} as your currency.".format(currency))
     return payment_method
 
