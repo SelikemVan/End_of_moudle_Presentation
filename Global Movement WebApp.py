@@ -34,7 +34,14 @@ def admin_login():
                 break
     else:
         print("Admin login failed. You need to register or login as a regular user.")
-        return False
+        choice1 = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n")
+        if choice1 == "1":
+            registration(users)
+        elif choice1 == "2":
+            login(users)
+        elif choice1 == "3":
+            print("Goodbye!")
+            return False
 
 
 # Main program
@@ -95,9 +102,21 @@ def payment_options():
     payment_method = input("Enter your choice: ")
     print("You have selected {} as your payment method.".format(payment_method))
     currency = input("Select your currency:\ncedis\ndollars\neuros\npound\nYen\nAUD\nCAD\n")
-    if currency == "cedes":
+    if currency == "cedis":
         print("You have selected {} as your currency.".format(currency))
-    return payment_method
+    if currency == "dollars":
+        print("You have selected {} as your currency.".format(currency))
+    if currency == "euros":
+        print("You have selected {} as your currency.".format(currency))
+    if currency == "pound":
+        print("You have selected {} as your currency.".format(currency))
+    if currency == "Yen".lower():
+        print("You have selected {} as your currency.".format(currency))
+    if currency == "AUD".lower():
+        print("You have selected {} as your currency.".format(currency))
+    if currency == "CAD".lower:
+        print("You have selected {} as your currency.".format(currency))
+    return payment_method, currency
 
 
 def transport_services():
@@ -120,7 +139,7 @@ def transport_services():
         basic_fare = 1000 * adults + 500 * children
         discount = 0.2 * basic_fare if adults > 3 else 0
         fare = basic_fare - discount
-        print("The fare for the luxurious bus is {} .".format(fare))
+        print("The fare for the luxurious bus is {}.".format(fare))
 
         print("Do you want to add in-app entertainment? (yes/no)")
         in_app_entertainment_choice = input()
