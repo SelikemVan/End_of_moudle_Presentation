@@ -7,8 +7,8 @@ print("\nWelcome to Vankem's Global Movement App\nTRANSPORTATION MADE EASIER!\n"
 print("Register and login to use the app")
 
 # Define the admin username and password
-admin_username = "admin"
-admin_password = "admin123"
+admin_username = "seli"
+admin_password = "seli123"
 
 
 # Function to check if the user is the admin
@@ -20,33 +20,28 @@ def admin_login():
     if username == admin_username and password == admin_password:
         print("Admin login successful!")
         while True:
-            choice2 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Exit\n")
+            choice1 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Exit\n")
 
-            if choice2 == "1":
+            if choice1 == "1":
                 payment_method1 = payment_options()
                 transport_services()
 
-            elif choice2 == "2":
+            elif choice1 == "2":
                 entertainment()
 
-            elif choice2 == "3":
+            elif choice1 == "3":
                 print("Goodbye, admin!")
                 break
     else:
         print("Admin login failed. You need to register or login as a regular user.")
-        choice1 = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n")
-        if choice1 == "1":
+        choice2 = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n")
+        if choice2 == "1":
             registration(users)
-        elif choice1 == "2":
+        elif choice2 == "2":
             login(users)
-        elif choice1 == "3":
+        elif choice2 == "3":
             print("Goodbye!")
             return False
-
-
-# Main program
-if admin_login():
-    print("You are logged in as the admin.")
 
 
 def registration(users):
@@ -114,7 +109,7 @@ def payment_options():
         print("You have selected {} as your currency.".format(currency))
     if currency == "AUD".lower():
         print("You have selected {} as your currency.".format(currency))
-    if currency == "CAD".lower:
+    if currency == "CAD".lower():
         print("You have selected {} as your currency.".format(currency))
     return payment_method, currency
 
@@ -346,24 +341,4 @@ def entertainment():
 
 users = []
 
-print("Welcome to the main Application")
-
-while True:
-    choice = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n4. Payment\n5. Entertainment\n")
-
-    if choice == "1":
-        registration(users)
-
-    elif choice == "2":
-        login(users)
-
-    elif choice == "3":
-        print("Goodbye!")
-        break
-
-    if choice == "4":
-        payment_method1 = payment_options()
-        transport_services()
-
-    if choice == "5":
-        entertainment()
+admin_login()
