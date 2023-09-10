@@ -6,46 +6,7 @@ print("USER STORY:\nTo solve a Global Transport problem for efficient transporta
 print("\nWelcome to Vankem's Global Movement App\nTRANSPORTATION MADE EASIER!\n")
 print("Register and login to use the app")
 
-# Define the admin username and password
-admin_username = "seli"
-admin_password = "seli123"
-
-
-# Function to check if the user is the admin
-def admin_login():
-    print("Admin Login")
-    username = input("Enter admin username: ")
-    password = input("Enter admin password: ")
-
-    if username == admin_username and password == admin_password:
-        print("Admin login successful!")
-        while True:
-            choice1 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Exit\n")
-
-            if choice1 == "1":
-                payment_method1 = payment_options()
-                transport_services()
-
-            elif choice1 == "2":
-                entertainment()
-
-            elif choice1 == "3":
-                print("Goodbye, admin!")
-                break
-    else:
-        print("Admin login failed. You need to register or login as a regular user.")
-        choice2 = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n")
-        if choice2 == "1":
-            user_data = registration(users)
-            if user_data:
-                # If registration is successful, allow the user to log in
-                login(users)
-                return
-        elif choice2 == "2":
-            login(users)
-        elif choice2 == "3":
-            print("Goodbye!")
-            return False
+global user_logged_in
 
 
 def registration(users):
@@ -80,17 +41,47 @@ def registration(users):
 
 
 def login(users):
+    global user_logged_in  # Declare that we are using the global variable
     print("Welcome to the login page")
 
-    email = input("Enter your email: ")
+    name = input("Enter your name: ")
     password = input("Enter your password: ")
 
     for user_data in users:
-        if email == user_data.get("email_address") and password == user_data.get("password"):
+        if name == user_data.get("name") and password == user_data.get("password"):
             print("Login successful!")
-            return
+            user_logged_in = True
         else:
             print("Invalid email or password.")
+    if user_logged_in:
+        # If the user is logged in, show payment and entertainment options
+        while True:
+            choice1 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Exit\n")
+            if choice1 == "1":
+                payment_options()
+            elif choice1 == "2":
+                entertainment()
+            elif choice1 == "3":
+                user_logged_in = False  # Logout the user
+                print("Logged out successfully!")
+
+    if name == "seli" or "kof" and password == "seli123" or "kofi123":
+        print("Admin login successful!")
+        while True:
+            choice1 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Exit\n")
+
+            if choice1 == "1":
+                payment_method1 = payment_options()
+                transport_services()
+
+            elif choice1 == "2":
+                entertainment()
+
+            elif choice1 == "3":
+                print("Goodbye, admin!")
+                break
+    else:
+        return
 
 
 def payment_options():
@@ -345,4 +336,27 @@ def entertainment():
 
 users = []
 
-admin_login()
+print("Welcome to the main Application")
+
+while True:
+    choice = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n4. Payment\n5. Entertainment\n")
+
+    if choice == "1":
+        registration(users)
+
+    elif choice == "2":
+        login(users)
+        if user_logged_in:  # Check if the user is logged in
+            # Show payment and entertainment options
+            choice2 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Logout\n")
+            if choice2 == "1":
+                payment_options()
+            elif choice2 == "2":
+                entertainment()
+            elif choice2 == "3":
+                user_logged_in = False  # Logout the user
+                print("Logged out successfully!")
+
+    elif choice == "3":
+        print("Goodbye!")
+        break
