@@ -6,7 +6,7 @@ print("USER STORY:\nTo solve a Global Transport problem for efficient transporta
 print("\nWelcome to Vankem's Global Movement App\nTRANSPORTATION MADE EASIER!\n")
 print("Register and login to use the app")
 
-global user_logged_in
+user_logged_in = False
 
 
 def registration(users):
@@ -41,7 +41,7 @@ def registration(users):
 
 
 def login(users):
-    global user_logged_in  # Declare that we are using the global variable
+    global user_logged_in
     print("Welcome to the login page")
 
     name = input("Enter your name: ")
@@ -51,37 +51,9 @@ def login(users):
         if name == user_data.get("name") and password == user_data.get("password"):
             print("Login successful!")
             user_logged_in = True
+            return user_data
         else:
             print("Invalid email or password.")
-    if user_logged_in:
-        # If the user is logged in, show payment and entertainment options
-        while True:
-            choice1 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Exit\n")
-            if choice1 == "1":
-                payment_options()
-            elif choice1 == "2":
-                entertainment()
-            elif choice1 == "3":
-                user_logged_in = False  # Logout the user
-                print("Logged out successfully!")
-
-    if name == "seli" or "kof" and password == "seli123" or "kofi123":
-        print("Admin login successful!")
-        while True:
-            choice1 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Exit\n")
-
-            if choice1 == "1":
-                payment_method1 = payment_options()
-                transport_services()
-
-            elif choice1 == "2":
-                entertainment()
-
-            elif choice1 == "3":
-                print("Goodbye, admin!")
-                break
-    else:
-        return
 
 
 def payment_options():
@@ -332,6 +304,8 @@ def entertainment():
             print("Playing Movies...")
 
 
+# Define payment_options, transport_services, tic_tac_toe_game, and entertainment functions as before
+
 # Main program
 
 users = []
@@ -339,23 +313,24 @@ users = []
 print("Welcome to the main Application")
 
 while True:
-    choice = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n4. Payment\n5. Entertainment\n")
+    choice = input("Choose an option:\n1. Register\n2. Login\n3. Exit\n")
 
     if choice == "1":
         registration(users)
 
     elif choice == "2":
         login(users)
-        if user_logged_in:  # Check if the user is logged in
+        if user_data:
             # Show payment and entertainment options
-            choice2 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Logout\n")
-            if choice2 == "1":
-                payment_options()
-            elif choice2 == "2":
-                entertainment()
-            elif choice2 == "3":
-                user_logged_in = False  # Logout the user
-                print("Logged out successfully!")
+            while user_logged_in:
+                choice2 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Logout\n")
+                if choice2 == "1":
+                    payment_options()
+                elif choice2 == "2":
+                    entertainment()
+                elif choice2 == "3":
+                    user_logged_in = False  # Logout the user
+                    print("Logged out successfully!")
 
     elif choice == "3":
         print("Goodbye!")
