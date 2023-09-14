@@ -47,13 +47,32 @@ def login(users):
     name = input("Enter your name: ")
     password = input("Enter your password: ")
 
+    authenticated_user = None
+
     for user_data in users:
         if name == user_data.get("name") and password == user_data.get("password"):
             print("Login successful!")
             user_logged_in = True
-            return user_data
+            authenticated_user = users
+        if (name == "seli" or name == "kofi") and (password == "seli123" or password == "kofi123"):
+            print("Admin login successful!")
+            while True:
+                choice1 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Exit\n")
+
+                if choice1 == "1":
+                    payment_method1 = payment_options()
+                    transport_services()
+
+                elif choice1 == "2":
+                    entertainment()
+
+                elif choice1 == "3":
+                    print("Goodbye, admin!")
+                    break
+
         else:
-            print("Invalid email or password.")
+            if authenticated_user is None:
+                print("Invalid email or password.")
 
 
 def payment_options():
@@ -319,7 +338,7 @@ while True:
         registration(users)
 
     elif choice == "2":
-        login(users)
+        user_data = login(users)
         if user_data:
             # Show payment and entertainment options
             while user_logged_in:
