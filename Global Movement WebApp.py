@@ -7,7 +7,7 @@ print("\nWelcome to Vankem's Global Movement App\nTRANSPORTATION MADE EASIER!\n"
 print("Register and login to use the app")
 
 user_logged_in = False
-
+current_user = None
 
 def registration(users):
     print("Welcome to the Registration page")
@@ -41,7 +41,7 @@ def registration(users):
 
 
 def login(users):
-    global user_logged_in
+    global user_logged_in, current_user
     print("Welcome to the login page")
 
     name = input("Enter your name: ")
@@ -337,10 +337,12 @@ while True:
     if choice == "1":
         registration(users)
 
-    elif choice == "2":
+    if choice == "2":
         user_data = login(users)
         if user_data:
-            # Show payment and entertainment options
+            current_user = user_data  # Store the current user data
+            user_logged_in = True
+            # Show payment and entertainment options after successful login
             while user_logged_in:
                 choice2 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Logout\n")
                 if choice2 == "1":
@@ -349,7 +351,10 @@ while True:
                     entertainment()
                 elif choice2 == "3":
                     user_logged_in = False  # Logout the user
+                    current_user = None  # Clear current user data
                     print("Logged out successfully!")
+
+
 
     elif choice == "3":
         print("Goodbye!")
