@@ -5,9 +5,10 @@ print("USER STORY:\nTo solve a Global Transport problem for efficient transporta
       "travelers.\n")
 print("\nWelcome to Vankem's Global Movement App\nTRANSPORTATION MADE EASIER!\n")
 print("Register and login to use the app")
-
+users = []
 user_logged_in = False
 current_user = None
+
 
 def registration(users):
     print("Welcome to the Registration page")
@@ -53,26 +54,28 @@ def login(users):
         if name == user_data.get("name") and password == user_data.get("password"):
             print("Login successful!")
             user_logged_in = True
-            authenticated_user = users
-        if (name == "seli" or name == "kofi") and (password == "seli123" or password == "kofi123"):
+            authenticated_user = user_data  # Use the user_data dictionary for authentication
+            break  # Exit the loop after successful login
+
+    if authenticated_user is None:
+        print("Invalid email or password.")
+        return
+
+    if (name.lower() == "seli" or name.lower() == "kofi") and (password == "seli123" or password == "kofi123"):
             print("Admin login successful!")
-            while True:
-                choice1 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Exit\n")
+            # Set authenticated_user to a value that represents admin
+            authenticated_user =  "admin"
 
-                if choice1 == "1":
-                    payment_method1 = payment_options()
-                    transport_services()
+        while True:
+            choice1 = input("Choose an option:\n1. Payment\n2. Entertainment\n3. Exit\n")
 
-                elif choice1 == "2":
-                    entertainment()
-
-                elif choice1 == "3":
-                    print("Goodbye, admin!")
-                    break
-
-        else:
-            if authenticated_user is None:
-                print("Invalid email or password.")
+            if choice1 == "1":
+                payment_options()
+            elif choice1 == "2":
+                entertainment()
+            elif choice1 == "3":
+                print("Goodbye, admin!")
+                break
 
 
 def payment_options():
@@ -353,8 +356,6 @@ while True:
                     user_logged_in = False  # Logout the user
                     current_user = None  # Clear current user data
                     print("Logged out successfully!")
-
-
 
     elif choice == "3":
         print("Goodbye!")
